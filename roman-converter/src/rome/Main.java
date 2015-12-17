@@ -28,12 +28,15 @@ public class Main {
 	public static void main(String[] args) {
 
 		int arab = 0;
-		String showInputDialog = JOptionPane
-				.showInputDialog("Arabic Number (<3000):");
-		while (!showInputDialog.matches("[0-9]*")
-				|| Integer.valueOf(showInputDialog) > 2999) {
-			showInputDialog = JOptionPane
-					.showInputDialog("Wrong Input! Try Again:");
+		String showInputDialog = JOptionPane.showInputDialog("Arabic Number (<3000):");
+		if (showInputDialog == null) {
+			System.exit(0);
+		}
+		while (!showInputDialog.matches("[0-9]+") || Integer.valueOf(showInputDialog) > 2999) {
+			showInputDialog = JOptionPane.showInputDialog("Wrong Input! Try Again:");
+			if (showInputDialog == null) {
+				System.exit(0);
+			}
 		}
 		arab = Integer.valueOf(showInputDialog);
 		JOptionPane.showMessageDialog(null, arab + " → " + convertToRome(arab),
